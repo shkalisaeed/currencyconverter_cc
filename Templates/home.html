@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Currency Converter</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+	<!-- Custom CSS -->
+	<style>
+		h1 {
+			font-family: 'Lobster', cursive;
+		}
+	</style>
+</head>
+<body>
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-lg-6 col-md-8 col-sm-10">
+				<h1 class="text-center mb-4">Currency Converter</h1>
+				<form method="POST">
+					{{ conversion_form.csrf_token }}
+					{{ conversion_form.amount.label }}
+					{{ conversion_form.amount(class="form-control", placeholder="Enter amount") }}
+					{{ conversion_form.from_currency.label }}
+					{{ conversion_form.from_currency(class="form-control") }}
+					{{ conversion_form.to_currency.label }}
+					{{ conversion_form.to_currency(class="form-control") }}
+					<button type="submit" class="btn btn-primary btn-block">Convert</button>
+				</form>
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+						{% for message in messages %}
+							<div class="mt-4">
+								<h5 class="text-center">{{ message }}</h5>
+							</div>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+
+                {% if url %}
+                    <div class="row justify-content-center">
+                    <img src={{ url }} alt="Chart" height="450" width="1125" class="center">
+                    </div>
+                {% endif %}
+			</div>
+		</div>
+	</div>
+</body>
+</html>
